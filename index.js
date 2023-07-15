@@ -1,11 +1,19 @@
 const TelegramBot = require('node-telegram-bot-api');
 
+const express = require('express');
+const cors = require('cors');
+
 const token = '6272292782:AAEEcAYEC5-2qurdI9YHom78TDf6CVc0feo'
 const webAppUrl = 'https://bot-front-inky.vercel.app/';
 
 const bot = new TelegramBot(token, {
     polling: true
 });
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
